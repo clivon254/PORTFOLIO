@@ -6,9 +6,12 @@ import cors from "cors"
 import "dotenv/config"
 import authRouter from "./router/authRouter.js"
 import userRoute from "./router/userRouter.js"
+import projectRouter from "./router/projectRouter.js"
+import skillRouter from "./router/skillRouter.js"
 
 
 const app = express()
+
 
 const PORT = process.env.PORT
 
@@ -19,10 +22,13 @@ app.use(cors())
 app.use(express.json())
 
 
+
+
 // DB CONNECTION
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("DB Connected"))
 .catch((err) => console.log(err))
+
 
 
 
@@ -32,6 +38,13 @@ app.use('/api/auth' , authRouter)
 
 
 app.use('/api/user' , userRoute)
+
+
+app.use('/api/project' , projectRouter)
+
+
+app.use('/api/skill', skillRouter)
+
 
 
 

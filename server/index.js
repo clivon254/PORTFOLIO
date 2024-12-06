@@ -9,6 +9,7 @@ import userRoute from "./router/userRouter.js"
 import projectRouter from "./router/projectRouter.js"
 import skillRouter from "./router/skillRouter.js"
 import cvRouter from "./router/cvRouter.js"
+import reveiwRouter from "./router/reveiwRouter.js"
 
 
 const app = express()
@@ -48,6 +49,9 @@ app.use('/api/skill', skillRouter)
 
 
 app.use('/api/cv' ,cvRouter)
+
+
+app.use('/api/reveiw' , reveiwRouter)
 
 
 

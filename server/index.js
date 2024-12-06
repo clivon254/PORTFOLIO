@@ -8,6 +8,7 @@ import authRouter from "./router/authRouter.js"
 import userRoute from "./router/userRouter.js"
 import projectRouter from "./router/projectRouter.js"
 import skillRouter from "./router/skillRouter.js"
+import cvRouter from "./router/cvRouter.js"
 
 
 const app = express()
@@ -44,6 +45,9 @@ app.use('/api/project' , projectRouter)
 
 
 app.use('/api/skill', skillRouter)
+
+
+app.use('/api/cv' ,cvRouter)
 
 
 

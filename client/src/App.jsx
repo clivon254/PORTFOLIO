@@ -1,20 +1,25 @@
 
 
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom"
 import {Toaster} from "sonner"
 import SignIn from "./pages/SignIn"
 import ResetPassword from "./pages/ResetPassword"
 import ForgotPassword from "./pages/ForgotPassword"
+import Home from "./pages/Home"
 
 
 export default function App()
 {
 
-  const LayOut = () => {
+  const Layout = () => {
 
     return(
 
-      <div className=""></div>
+      <div className="">
+
+        <Outlet/>
+
+      </div>
 
     )
 
@@ -27,14 +32,22 @@ export default function App()
         <Toaster richColors/>
 
         <main className="min-h-screen">
-        
-         <Route element={LayOut}></Route>
 
-         <Route path="/sign-in" element={<SignIn/>} />
+          <Routes>
 
-         <Route path="/forgot-password" element={<ForgotPassword/>} />
+            <Route element={<Layout/>}>
 
-         <Route path="/reset-password/:token" element={<ResetPassword/>} />
+                <Route path="/" element={<Home/>} />
+
+            </Route>
+
+            <Route path="/sign-in" element={<SignIn/>} />
+
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
+
+            <Route path="/reset-password/:token" element={<ResetPassword/>} />
+
+          </Routes>
 
         </main>
 

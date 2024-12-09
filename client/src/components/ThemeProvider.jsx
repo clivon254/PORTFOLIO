@@ -12,7 +12,7 @@ export default function ThemeProvider({children}) {
 
     <div className={theme}>
 
-        <div className="bg-white dark:bg-black">
+        <div className="bg-BackgroundLight dark:bg-BackgroundDark text-textLight dark:text-textDark font-texting">
 
             {children}
 

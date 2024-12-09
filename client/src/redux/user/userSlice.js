@@ -1,7 +1,7 @@
 
 
-import { createSlice } from "@reduxjs/toolkit"
 
+import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
     currentUser:null,
@@ -9,20 +9,19 @@ const initialState = {
     loading:false
 }
 
-
 const userSlice = createSlice({
-    name:'User',
+    name:'user',
     initialState,
     reducers:{
 
         signInStart:(state) => {
 
-            state.loading = true
+            state.loading = true 
 
             state.error = null
         },
 
-        signInSuccess:(state ,action) => {
+        signInSuccess:(state,action) => {
 
             state.loading = false
 
@@ -33,18 +32,18 @@ const userSlice = createSlice({
 
         signInFailure:(state,action) => {
 
-            state.loading = false
+            state.loading = false 
 
-            state.error = null
+            state.currentUser = null 
 
-            state.currentUser = action.payload
+            state.error = action.payload
         },
 
-        updateUserStart:(state,action) => {
+        updateUserStart:(state) => {
 
-            state.loading = true
+            state.loading = true 
 
-            state.error = false
+            state.error = null
         },
 
         updateUserSuccess:(state,action) => {
@@ -54,21 +53,21 @@ const userSlice = createSlice({
             state.currentUser = action.payload
 
             state.error = null
+
         },
 
         updateUserFailure:(state,action) => {
 
-            state.error = action.payload
-
             state.loading = false
 
+            state.error = action.payload
         },
 
-        deleteUserSuccess:(state,action) => {
-
-            state.currentUser = null
+        deleteUserSuccess:(state) => {
 
             state.error = null
+
+            state.currentUser = null
         },
 
         deleteUserFailure:(state,action) => {
@@ -78,18 +77,20 @@ const userSlice = createSlice({
             state.loading = false
         },
 
-        signOutSuccesss:(state,action) => {
+        signOutUserSuccess:(state) => {
 
-            state.currentUser = null 
+            state.currentUser = null
 
-            state.loading = false
-        },
+            state.loading = false 
+
+            state.error = null
+        }
 
     }
-}) 
+})
 
 
-export  const {
+export const {
     signInStart,
     signInSuccess,
     signInFailure,
@@ -98,9 +99,9 @@ export  const {
     updateUserFailure,
     deleteUserSuccess,
     deleteUserFailure,
-    signOutSuccesss
-} 
-= userSlice.actions
+    signOutUserSuccess
+}
+ = userSlice.actions
 
 
-export default userSlice.reducer
+export default userSlice.reducer 

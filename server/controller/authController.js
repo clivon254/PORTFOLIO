@@ -93,7 +93,7 @@ export const forgotPassord = async (req,res,next) => {
 
     if(!email || email === "")
     {
-        return next(errorHandler(404,"User not found"))
+        return next(errorHandler(404,"email not provided ... please fill"))
     }
 
     const user = await User.findOne({email})

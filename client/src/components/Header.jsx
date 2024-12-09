@@ -166,7 +166,7 @@ export default function Header() {
 
                                       </Link>
 
-                                      <Link to='/add-project'>
+                                      <Link to='/add-skill'>
 
                                         <Dropdown.Item>Add Skills</Dropdown.Item>
 

@@ -17,6 +17,10 @@
     @apply text-sm lg:text-base font-semibold
 }
 
+.section
+{
+    @apply p-5 w-full
+}
 
 .title
 {
@@ -51,7 +55,7 @@
 /* active link */
 .active-nav
 {
-    @apply 
+    @apply relative inline-block
 
 }
 

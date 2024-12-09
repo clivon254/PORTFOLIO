@@ -6,6 +6,8 @@ import SignIn from "./pages/SignIn"
 import ResetPassword from "./pages/ResetPassword"
 import ForgotPassword from "./pages/ForgotPassword"
 import Home from "./pages/Home"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 
 export default function App()
@@ -15,9 +17,17 @@ export default function App()
 
     return(
 
-      <div className="">
+      <div className="min-h-screen flex flex-col ">
 
-        <Outlet/>
+        <Header/>
+        
+        <div className="w-full flex-1">
+          
+           <Outlet/>
+
+        </div>
+
+        <Footer/>
 
       </div>
 

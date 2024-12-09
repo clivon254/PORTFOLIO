@@ -11,9 +11,12 @@ export default function StoreContextProvider(props){
 
     const [token ,setToken ] = useState(localStorage.getItem("token"))
 
+    const [open ,setOpen] = useState(false)
+
     const contextValue = {
         url,
-        token,setToken
+        token,setToken,
+        open,setOpen,
     }
 
     return (

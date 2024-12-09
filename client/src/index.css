@@ -42,3 +42,24 @@
 {
     @apply h-6 w-6 border-2 border-PrimaryDark rounded-full animate-spin border-r-white border-t-white
 }
+
+.themeButton
+{
+    @apply border border-zinc-700 dark:border-zinc-200 h-8 w-8 rounded-full grid place-content-center shadow-xl
+}
+
+/* active link */
+.active-nav
+{
+    @apply 
+
+}
+
+.active-nav-link
+{
+    @apply relative inline-block 
+        after:bottom-2 after:origin-left after:content-[''] after:absolute after:w-[100%] 
+        after:scale-x-0  after:duration-75 after:hover:scale-100 after:active:scale-100 
+        before:bottom-2 before:origin-right before:content-[''] before:absolute before:w-[100%] 
+        before:scale-x-0  before:duration-75 before:hover:scale-100 before:active:scale-100 
+}

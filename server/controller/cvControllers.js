@@ -13,10 +13,10 @@ export const addCV = async (req,res,next) => {
 
     try
     {
-        const {fileUrl} = req.body
+        const {fileUrl,title} = req.body
 
         const newCv = new CV({
-            fileUrl
+            fileUrl,title
         })
 
 
@@ -53,6 +53,21 @@ export const getCv = async (req,res,next) => {
     }
 }
 
+export const getCvs = async (req,res,next) => {
+
+    try
+    {
+        const cvs = await CV.find({})
+
+        res.status(200).json({success:true , cvs})
+        
+    }
+    catch(error)
+    {
+        next(error)
+    }
+}
+
 export const updateCv = async (req,res,next) => {
 
     if(!req.user.isAdmin)
@@ -75,7 +90,8 @@ export const updateCv = async (req,res,next) => {
             cvId,
             {
                 $set:{
-                    fileUrl:req.body.fileUrl
+                    fileUrl:req.body.fileUrl,
+                    title:req.body.title
                 }
             },
             {new : true}

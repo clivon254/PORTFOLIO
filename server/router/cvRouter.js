@@ -1,7 +1,7 @@
 
 
 import express from "express"
-import { addCV, deleteCv, getCv, updateCv } from "../controller/cvControllers.js"
+import { addCV, deleteCv, getCv, getCvs, updateCv } from "../controller/cvControllers.js"
 import { verifyToken } from "../utils/verify.js"
 
 
@@ -11,13 +11,16 @@ const cvRouter = express.Router()
 cvRouter.post('/add-cv', verifyToken , addCV)
 
 
-cvRouter.get('/get-cv' , getCv)
+cvRouter.get('/get-cv/:cvId' , getCv)
 
 
-cvRouter.put('/update-cv', verifyToken , updateCv)
+cvRouter.get('/get-cvs' , getCvs)
 
 
-cvRouter.delete('/delete-cv', verifyToken , deleteCv)
+cvRouter.put('/update-cv/:cvId', verifyToken , updateCv)
+
+
+cvRouter.delete('/delete-cv/:cvId', verifyToken , deleteCv)
 
 
 

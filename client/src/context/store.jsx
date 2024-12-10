@@ -18,6 +18,8 @@ export default function StoreContextProvider(props){
 
     const [projects ,setProjects] = useState([])
 
+    const [Cvs ,setCvs] = useState([])
+
 
     // fetch Skills
     const fetchSkills = async () => {
@@ -59,12 +61,34 @@ export default function StoreContextProvider(props){
 
     }
 
+    // fetchCv
+    const fetchCvs = async () => {
+
+        try
+        {
+            const res = await axios.get(url + "/api/cv/get-cvs")
+
+            if(res.data.success)
+            {
+                setCvs(res.data.cvs)
+            }
+
+        }
+        catch(error)
+        {
+            console.log(error.message)
+        }
+
+    }
+
 
     useEffect(() => {
 
         fetchSkills()
 
         fetchProjects()
+
+        fetchCvs()
         
     },[])
 
@@ -76,6 +100,8 @@ export default function StoreContextProvider(props){
         fetchSkills,
         projects,setProjects,
         fetchProjects,
+        Cvs,setCvs,
+        fetchCvs
     }
 
     return (

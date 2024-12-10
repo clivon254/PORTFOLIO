@@ -16,6 +16,7 @@ import AddSkill from "./pages/AddSkill"
 import Profile from "./pages/Profile"
 import UpdateSkill from "./pages/UpdateSkill"
 import UpdateProject from "./pages/UpdateProject"
+import UpdateCv from "./pages/UpdateCv"
 
 
 export default function App()
@@ -60,6 +61,8 @@ export default function App()
                 <Route path="/profile" element={<Profile/>} />
 
                 <Route path="/cv" element={<CV/>} />
+
+                <Route path="/update-cv/:cvId" element={<UpdateCv/>} />
 
                 <Route path="/add-project" element={<AddProject/>} />
 

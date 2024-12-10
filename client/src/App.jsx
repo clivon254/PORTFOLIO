@@ -14,6 +14,7 @@ import Projects from "./pages/Projects"
 import Skills from "./pages/Skills"
 import AddSkill from "./pages/AddSkill"
 import Profile from "./pages/Profile"
+import UpdateSkill from "./pages/UpdateSkill"
 
 
 export default function App()
@@ -66,6 +67,8 @@ export default function App()
                 <Route path="/skills" element={<Skills/>} />
 
                 <Route path="/add-skill" element={<AddSkill/>} />
+
+                <Route path="/update-skill/:skillId" element={<UpdateSkill/>} />
 
             </Route>
 

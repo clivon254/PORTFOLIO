@@ -1,15 +1,15 @@
 
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from '../context/store'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import { app } from '../firebase'
 import axios from "axios"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { Alert } from "flowbite-react"
 
-export default function AddSkill() {
+export default function UpdateSkill() {
 
   const [loading , setLoading] = useState(false)
 
@@ -30,6 +30,10 @@ export default function AddSkill() {
   const navigate = useNavigate()
 
   console.log(formData)
+
+  const [skillLoading ,setSkillLoading] = useState(false)
+
+  const {skillId} = useParams()
 
 
   // handleImageUpload
@@ -98,7 +102,6 @@ export default function AddSkill() {
 
   }
 
-
   // handleSubmit
   const handleSubmit = async (e) => {
 
@@ -107,7 +110,7 @@ export default function AddSkill() {
     try
     {
 
-      const res = await axios.post(url + "/api/skill/create-skill", formData,{headers:{token}})
+      const res = await axios.put(url + `/api/skill/update-skill/${skillId}`, formData,{headers:{token}})
 
       if(res.data.success)
       {
@@ -115,7 +118,7 @@ export default function AddSkill() {
 
         setLoading(false)
 
-        toast.success("skill created successfully")
+        toast.success("skill updated successfully")
       }
      
 
@@ -134,12 +137,43 @@ export default function AddSkill() {
 
   }
 
+  // fetchSkill
+  const fetchSkill = async () => {
+
+    try
+    {
+        setSkillLoading(true)
+
+        const res = await axios.get(url + `/api/skill/get-skill/${skillId}`)
+
+        if(res.data.success)
+        {
+            setFormData(res.data.skill)
+
+            setSkillLoading(false)
+        }
+
+    }
+    catch(error)
+    {
+        console.log(error.message)
+    }
+
+  }
+
+
+  useEffect(() => {
+
+    fetchSkill()
+
+  },[])
+
 
   return (
 
    <section className="section max-w-xl mx-auto space-y-10">
 
-    <h1 className="title2 text-center">Add Skill</h1>
+    <h1 className="title2 text-center">Update Skill</h1>
 
     <form onSubmit={handleSubmit} className="space-y-5">
       
@@ -237,7 +271,7 @@ export default function AddSkill() {
                 <span className="loading"/> please wait . . . .
               </div>
             )
-            : ("Add Skill")}
+            : ("update Skill")}
       </button>
 
       {error && (

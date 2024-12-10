@@ -12,14 +12,15 @@ export const createProject = async (req,res,next) => {
     }
 
 
-    const {title,image,description,tags} = req.body
+    const {title,image,description,tags,link} = req.body
 
 
     const newProject = new Project({
         title,
         image,
         description,
-        tags
+        tags,
+        link
     })
 
 
@@ -105,7 +106,8 @@ export const updateProject = async (req,res,next) => {
                     title:req.body.title,
                     description:req.body.description,
                     tags:req.body.tags,
-                    image:req.body.image
+                    image:req.body.image,
+                    link:req.body.link
                 }
             },
             {new:true}

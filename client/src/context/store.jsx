@@ -16,6 +16,8 @@ export default function StoreContextProvider(props){
 
     const [skills ,setSkills] = useState([])
 
+    const [projects ,setProjects] = useState([])
+
 
     // fetch Skills
     const fetchSkills = async () => {
@@ -37,11 +39,32 @@ export default function StoreContextProvider(props){
 
     }
 
-    console.log(skills)
+    // fetchProjects
+    const fetchProjects = async () => {
+
+        try
+        {
+            const res = await axios.get(url + "/api/project/get-projects")
+
+            if(res.data.success)
+            {
+                setProjects(res.data.projects)
+            }
+
+        }
+        catch(error)
+        {
+            console.log(error)
+        }
+
+    }
+
 
     useEffect(() => {
 
         fetchSkills()
+
+        fetchProjects()
         
     },[])
 
@@ -50,7 +73,9 @@ export default function StoreContextProvider(props){
         token,setToken,
         open,setOpen,
         skills,setSkills,
-        fetchSkills
+        fetchSkills,
+        projects,setProjects,
+        fetchProjects,
     }
 
     return (

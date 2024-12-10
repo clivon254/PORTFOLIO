@@ -159,7 +159,7 @@ export default function Skills() {
                     className="btn rounded-full"
                     onClick={() => handleDelete()}
                   >
-                    Yes I'am sure
+                    Yes I'm sure
                   </button>
 
                   <button 

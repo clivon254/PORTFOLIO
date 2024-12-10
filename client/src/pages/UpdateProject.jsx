@@ -6,7 +6,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase'
 import { StoreContext } from '../context/store'
 import { toast } from 'sonner'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Alert } from 'flowbite-react'
 import axios from "axios"
 import { BsCheck, BsChevronExpand } from "react-icons/bs"
@@ -14,8 +14,7 @@ import clsx from "clsx"
 
 
 
-
-export default function AddProject() {
+export default function UpdateProject() {
 
   const {url ,token}  = useContext(StoreContext)
 
@@ -40,6 +39,8 @@ export default function AddProject() {
   const [selected ,setSelected] = useState([])
 
   console.log(formData)
+
+  const {projectId} = useParams()
 
   // handleSelected
   const handleSelectedChange = (el) => {
@@ -151,13 +152,13 @@ export default function AddProject() {
     try
     {
 
-      const res = await axios.post(url + "/api/project/create-project",formData ,{headers:{token}})
+      const res = await axios.put(url + `/api/project/update-project/${projectId}`,formData ,{headers:{token}})
 
       if(res.data.success)
       {
         setLoading(false)
 
-        toast.success("project created successfully")
+        toast.success("project updated successfully")
 
         navigate('/projects')
 
@@ -181,12 +182,37 @@ export default function AddProject() {
 
   }
 
+  // fetchProject
+  const fetchProject = async () => {
+
+    try
+    {
+      const res = await axios.get(url + `/api/project/get-project/${projectId}`)
+
+      if(res.data.success)
+      {
+        setFormData(res.data.project)
+      }
+
+    }
+    catch(error)
+    {
+      console.log(error.message)
+    }
+
+  }
+
+  useEffect(() => {
+
+    fetchProject()
+
+  },[])
 
   return (
 
     <section className="section max-w-xl mx-auto">
 
-      <h1 className="title2 text-center">Add Project</h1>
+      <h1 className="title2 text-center">Update Project</h1>
 
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -210,7 +236,7 @@ export default function AddProject() {
           {/* link */}
           <div className="flex flex-col gap-y-2">
 
-            <label htmlFor="" className="">Link</label>
+            <label htmlFor="" className="label">Link</label>
 
             <input 
               type="text" 
@@ -383,7 +409,7 @@ export default function AddProject() {
                     <span className="loading"/> please wait . . . .
                   </div>
                 )
-                : ("Add Skill")}
+                : ("Update Skill")}
           </button>
 
           {error && (

@@ -171,7 +171,7 @@ export default function CV() {
     
     <>
 
-        <section className="section space-y-10">
+        <section className="section space-y-10 max-w-xl mx-auto">
 
           <h1 className="title2 text-center">MY CV</h1>
 
@@ -295,15 +295,15 @@ export default function CV() {
 
                                 <Table.Cell>
 
-                                  <div className="flex items-center justify-center gap-x-3">
+                                  <div className="flex items-center  gap-x-3">
 
                                     <span className="">
-                                      <Link to={`/update-cv/${cv._id}`}> <FaEdit size={32}/> </Link>
+                                      <Link to={`/update-cv/${cv._id}`}> <FaEdit size={30}/> </Link>
                                     </span>
 
                                     <span className="">
                                       <FaTrashAlt 
-                                          size={32} 
+                                          size={30} 
                                           className="text-PrimaryLight"
                                           onClick={() => {
 

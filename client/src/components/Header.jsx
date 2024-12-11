@@ -7,10 +7,11 @@ import { MdClose, MdContacts, MdDarkMode, MdLightMode, MdLogout, MdMenu } from "
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleTheme } from '../redux/theme/themeSlice'
 import { Avatar, Drawer, Dropdown } from "flowbite-react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { signOutUserSuccess } from '../redux/user/userSlice'
 import {toast} from "sonner"
 import { StoreContext } from '../context/store'
+import Sidebar from './Sidebar'
 
 
 
@@ -48,6 +49,8 @@ export default function Header() {
 
     const dispatch = useDispatch()
 
+    const navigate = useNavigate()
+
     // handleSignOut
     const handleSignout = () => {
 
@@ -56,13 +59,15 @@ export default function Header() {
         localStorage.removeItem("token")
 
         toast.success("You have signed out")
+
+        navigate('/')
     }
 
   return (
 
     <>
 
-        <div className="p-3">
+        <header className="p-3">
 
             <div className="flex items-center justify-between">
 
@@ -208,18 +213,9 @@ export default function Header() {
 
             </div>
 
-        </div>
-
-        {/* <Drawer
-          open={open}
-          onClose={() => setOpen(false)}
-          className="lg:hidden"
-        >
-            <Drawer.Header titleIcon={() => <></>}/>
-
-            <Drawer.Items></Drawer.Items>
-
-        </Drawer> */}
+        </header>
+        
+        <Sidebar open={open} setOpen={setOpen}/>
 
     </>
 
